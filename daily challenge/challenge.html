@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Box</title>
+</head>
+<body>
+    
+    <style>
+        body{
+            background: #193549;
+            color: white;
+            font-weight: 100;
+            font-size: 50px;
+        }
+        .inbox{
+            width: 350px;
+            margin: 50px auto;
+            background-color: green;
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+        }
+        .item{
+            color: black;
+            font-weight: 100;
+            font-size: medium;
+            
+            align-items: center;
+
+            border: 1px solid black;
+            display: flex;
+        }
+        .item:last-child {
+            border-bottom: 0;
+            }
+        input:checked + p {
+            background: #F9F9F9;
+            text-decoration: line-through;
+            }
+
+        input[type="checkbox"] {
+            margin: 20px;
+            }
+
+        p {
+            margin: 0;
+            padding: 20px;
+            transition: background 0.2s;
+            flex: 1;
+            font-family:'helvetica neue';
+            font-size: 20px;
+            font-weight: 200;
+            border-left: 1px solid #D1E2FF;
+            }
+        
+        
+    </style>
+    <div class="inbox">
+        <div class="item">
+            <input type="checkbox">
+            <p>This is input Layout</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Keep yourself healthy</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Use tissue while coughing</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Corona will be defeated soon</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Your are the winner of the game</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Hey lets got out</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>I dont want to go anywhere</p>
+        </div>
+    </div>
+
+    <script>
+
+        const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+        let lastChecked;
+
+        function handleCheck(e) {
+           let inBetween = false;
+           if(e.shiftKey && this.checked) {
+
+               checkboxes.forEach(checkbox => {
+                   if(checkbox === this || checkbox === lastChecked)
+                   {
+                       inBetween =!inBetween;
+                   }
+                   if(inBetween) {
+                       checkbox.checked = true;
+                   }
+               })
+           }
+
+           lastChecked = this;
+        }
+        checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+
+    </script>
+
+</body>
+</html>
